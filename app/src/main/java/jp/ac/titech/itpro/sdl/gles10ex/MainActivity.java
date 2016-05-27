@@ -9,6 +9,8 @@ import android.widget.SeekBar;
 import android.hardware.*;
 import android.widget.Toast;
 
+import javax.microedition.khronos.opengles.GL10;
+
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, SensorEventListener{
     private final static String TAG = "MainActivity";
 
@@ -38,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         rotationBarZ.setOnSeekBarChangeListener(this);
 
         renderer = new SimpleRenderer();
-        renderer.addObj(new NewGraphic(0.5f, 0, 0.2f, -3));
-        renderer.addObj(new Pyramid(0.5f, 0, 0, 0));
+        renderer.addObj(new NewGraphic2(0.5f, 0, 0.2f, -3));
+        //renderer.addObj(new Pyramid(0.5f, 0, 0, 0));
         glView.setRenderer(renderer);
 
         //追加
@@ -66,14 +68,14 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        /*
+
         if (seekBar == rotationBarX)
             renderer.setRotationX(progress);
         else if (seekBar == rotationBarY)
             renderer.setRotationY(progress);
         else if (seekBar == rotationBarZ)
             renderer.setRotationZ(progress);
-        */
+
     }
 
     @Override
@@ -87,12 +89,14 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     //追加
     @Override
     public void onSensorChanged(SensorEvent event){
+        /*
         renderer.setRotationX(event.values[0]);
         renderer.setRotationY(event.values[1]);
         renderer.setRotationZ(event.values[2]);
 
         rate = ((float) (event.timestamp - prevts)) / (1000 * 1000);
         prevts = event.timestamp;
+        */
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy){
